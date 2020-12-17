@@ -35,7 +35,7 @@ There **are** typos/scanning errors in the code! (e.g. line 7570 had a goto to 1
 ### ARRAYS
     
     G is the galactic map. One integer for each  (100s are klingons, 10s are bases, 1s are stars)
-    Z is a copy of the galactic map
+    Z is a copy of the galactic map (to track where you have been for the cumulative record function)
     C is direction vectors for moving ship
     D is the damage to various systems (device numbers from 1 to 8)
     
@@ -47,10 +47,12 @@ There **are** typos/scanning errors in the code! (e.g. line 7570 had a goto to 1
     Z4,Z5 is your current position 1-8,1-8
     S shield level (starts at 0)
     E energy (starts at 3000)
+    P photon torpedoes remaining
     K9 current number of klingons
     B9 number of starbases
     T9 number of turns total
     T0 starting stardate
+    S9 base energy for klingons
 
     S3 stars in current quadrant
     K3 klingons in current quadrant
@@ -60,7 +62,7 @@ There **are** typos/scanning errors in the code! (e.g. line 7570 had a goto to 1
         
 ### SUBROUTINES
 
-    6430 -     
+    6430 - short range scan and startup
     8590 - find a blank spot in the local map - sets r1,r2 to location
     8660 - insert a$ into q$ at position z1,z2 (in 190 char string) 
     8780 - set G2$ to device name in R1

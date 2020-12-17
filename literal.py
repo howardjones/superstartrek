@@ -208,7 +208,7 @@ for i in range(3):
     k[i][2] = 0
 
 # q_str is a 192-char long string for the quadrant map
-q_str = 192*" "
+q_str = 192 * " "
 q_str = update_local_map(q_str, s1, s2, "<*>")
 if k3 > 0:
     for i in range(0, k3):
@@ -227,3 +227,35 @@ if s3 > 0:
     for i in range(0, s3):
         r1, r2 = find_empty_map_spot(q_str)
         q_str = update_local_map(q_str, r1, r2, " * ")
+
+did_dock = False
+for i in range(s1 - 1, s1 + 2):  # (upper range is not inclusive)
+    for j in range(s2 - 1, s2 + 2):
+        if i >= 1 and i <= 8 and j >= 1 and j <= 8:
+            if check_map_contents(q_str, i, j, ">!<"):
+                did_dock = True
+if did_dock:
+    d0 = 1
+    c_str = "DOCKED"
+    p = p0
+    e = e0
+    print("SHIELDS DROPPED FOR DOCKING PURPOSES")
+    s = 0
+else:
+    if k3 > 0:
+        c_str = "*RED*"
+    else:
+        c_str = "GREEN"
+        if e < e0 * 0.1:
+            c_str = "AMBER"
+
+if d(2) == 0:
+    print("*** SHORT RANGE SENSORS ARE OUT ***")
+else:
+    print("---------------------------------")
+    for i in range(1, 9):
+        for j in range(coords_to_strpos(i, 1), coords_to_strpos(i, 8), 3):
+            print(" ")
+    print("---------------------------------")
+
+# line 1990
